@@ -1,0 +1,27 @@
+---
+import { getEntry, render } from 'astro:content'
+import LayoutDefault from '~/layouts/LayoutDefault.astro'
+import { formatDate } from '~/utils'
+
+const { translate: t } = Astro.locals
+const friendsPost = await getEntry('spec', 'friends')
+if (!friendsPost) {
+  throw new Error('No friends post found')
+}
+const { Content } = await render(friendsPost)
+---
+
+<LayoutDefault>
+  <header flex="~ col gap-2">
+    <h1 class="post-title">
+      <a class="not-prose">{friendsPost.data.title}</a>
+    </h1>
+    <div class="text-3.5">
+      <span>{t('updated_at')}</span>
+      <time>{formatDate(friendsPost.data.pubDate)}</time>
+    </div>
+  </header>
+  <article class="prose">
+    <Content />
+  </article>
+</LayoutDefault>
