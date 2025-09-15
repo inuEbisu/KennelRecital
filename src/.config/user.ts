@@ -10,7 +10,7 @@ export const userConfig: Partial<UserConfig> = {
     description: "inuEbisu's personal blog",
     navLinks: [
       { name: '首页', href: '/' },
-      { name: '博客', href: '/archive' },
+      { name: '归档', href: '/archive' },
       { name: '伙伴', href: '/friends' },
     ],
     socialLinks: [
