@@ -24,7 +24,7 @@ function getProvider() {
 
 {
   provider !== '' && (
-    <div py-16>
+    <div py-16 class="prose">
       {provider === 'disqus' && <Disqus identifier={id} url={url} title={data.title} />}
       {provider === 'giscus' && <Giscus />}
       {provider === 'twikoo' && <Twikoo path={path} />}
