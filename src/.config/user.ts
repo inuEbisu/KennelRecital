@@ -7,7 +7,7 @@ export const userConfig: Partial<UserConfig> = {
     title: "犬窝闲谭",
     subtitle: "KennelRecital",
     author: "inuEbisu",
-    description: "inuEbisu's personal blog",
+    description: "犬戎的部落格 / inuEbisu's personal blog.",
     navLinks: [
       { name: '首页', href: '/' },
       { name: '关于', href: '/about' },
