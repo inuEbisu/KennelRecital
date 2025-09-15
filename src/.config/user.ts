@@ -25,4 +25,19 @@ export const userConfig: Partial<UserConfig> = {
   seo: {
     twitter: "@inuEbisu_3rd",
   },
+  comment: {
+    giscus: {
+      repo: 'inuEbisu/KennelRecital',
+      repoId: 'R_kgDOPwEd-w',
+      category: 'General',
+      categoryId: 'DIC_kwDOPwEd-84Cvdb-',
+      mapping: 'pathname',
+      strict: '1',
+      reactionsEnabled: '1',
+      emitMetadata: '0',
+      inputPosition: 'top',
+      theme: 'light',
+      lang: 'zh-CN',
+    }
+  }
 }
