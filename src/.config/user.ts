@@ -5,7 +5,7 @@ export const userConfig: Partial<UserConfig> = {
   site: {
     website: "https://inuebisu.cn",
     title: "犬窝闲谭",
-    subtitle: "KennelRecital",
+    subtitle: "",
     author: "inuEbisu",
     description: "犬戎的部落格 / inuEbisu's personal blog.",
     navLinks: [
