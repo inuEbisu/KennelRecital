@@ -19,7 +19,7 @@ export const userConfig: Partial<UserConfig> = {
       // { name: 'notebook', href: 'https://note.inuebisu.cn'},
     ],
     footer: [
-      '© 2020-2025 <a target="_blank" href="%website">%author</a>',
+      '© 2020-%year <a target="_blank" href="%website">%author</a>',
     ],
   },
   seo: {
