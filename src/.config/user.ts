@@ -39,5 +39,8 @@ export const userConfig: Partial<UserConfig> = {
       theme: 'light',
       lang: 'zh-CN',
     }
+  },
+  analytics: {
+    googleAnalyticsId: 'G-8KZNP37R40'
   }
 }
