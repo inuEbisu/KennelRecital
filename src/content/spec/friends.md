@@ -11,4 +11,5 @@ pubDate: 2025-09-15
 [5dbwat4](https://5dbwat4.top/) /
 [咸鱼暄](https://xuan-insr.github.io/) /
 [玻狸](https://note.glassfoxowo.com/) /
-[tdiant](https://nyan.best/)
+[tdiant](https://nyan.best/) /
+[timetraveler314](https://chernoff.bond/)
