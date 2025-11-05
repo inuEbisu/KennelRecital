@@ -20,6 +20,7 @@ export const userConfig: Partial<UserConfig> = {
     ],
     footer: [
       '© 2020-%year <a target="_blank" href="%website">%author</a>',
+      '<a target="_blank" href="https://beian.miit.gov.cn/">黔ICP备2022001114号-2</a>',
     ],
   },
   seo: {
