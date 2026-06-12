@@ -40,6 +40,7 @@ const navbarBlur =
 
 // 获取导航栏标题，如果没有设置则使用 siteConfig.title
 const navbarTitle = siteConfig.navbar.title || siteConfig.title;
+const navbarShowTitle = siteConfig.navbar.showTitle !== false;
 
 // 获取导航栏宽度配置
 const navbarWidthFull = siteConfig.navbar.widthFull ?? false;
@@ -88,7 +89,14 @@ if (isLocalSrcLogo) {
         "overflow-visible! h-18 px-4"
     ]}>
         <div class="mx-auto h-full w-full max-w-(--page-width) grid grid-cols-[auto_minmax(0,1fr)_auto] items-center">
-            <a href={url('/')} class="btn-plain scale-animation rounded-lg h-13 px-5 font-bold active:scale-95">
+            <a
+                href={url('/')}
+                aria-label={navbarTitle}
+                class:list={[
+                    "btn-plain scale-animation rounded-lg h-13 font-bold active:scale-95",
+                    navbarShowTitle ? "px-5" : "w-13"
+                ]}
+            >
                 <div class:list={[
                     "flex flex-row items-center text-md",
                     siteConfig.navbar.followTheme ? "text-(--primary)" : "dark:text-white text-black"
@@ -99,7 +107,10 @@ if (isLocalSrcLogo) {
                                         <Picture
                                             src={logoImg}
                                             alt={navbarLogo.alt || siteConfig.title}
-                                            class="h-7 w-7 mb-1 mr-2 object-contain"
+                                            class:list={[
+                                                "h-7 w-7 mb-1 object-contain",
+                                                navbarShowTitle ? "mr-2" : ""
+                                            ]}
                                             formats={getImageFormats()}
                                             fallbackFormat={getFallbackFormat()}
                                             widths={[28, 56]}
@@ -107,11 +118,19 @@ if (isLocalSrcLogo) {
                                             fetchpriority="high"
                                         />
                                     ) : navbarLogo?.type === "image" ? (
-                                        <img src={url(navbarLogo.value)} alt={navbarLogo.alt || siteConfig.title} class="h-7 w-7 mb-1 mr-2 object-contain" fetchpriority="high" />
+                                        <img
+                                            src={url(navbarLogo.value)}
+                                            alt={navbarLogo.alt || siteConfig.title}
+                                            class:list={[
+                                                "h-7 w-7 mb-1 object-contain",
+                                                navbarShowTitle ? "mr-2" : ""
+                                            ]}
+                                            fetchpriority="high"
+                                        />
                                     ) : navbarLogo?.type === "url" ? (
                                         <img src={navbarLogo.value} alt={navbarLogo.alt || siteConfig.title} class="h-7 w-7 mb-1 mr-2 object-contain" fetchpriority="high" />
                                     ) : null}
-                    {navbarTitle}
+                    {navbarShowTitle && navbarTitle}
                 </div>
             </a>
             <div class:list={[
