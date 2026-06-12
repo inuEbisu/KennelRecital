@@ -3,7 +3,7 @@ import type { ProfileConfig } from "../types/profileConfig";
 export const profileConfig: ProfileConfig = {
 	avatar: "/favicon/favicon.ico",
 	name: "inuEbisu",
-	bio: "犬戎的部落格 / inuEbisu's personal blog.",
+	bio: "And miles to go before I sleep",
 	links: [
 		{
 			name: "GitHub",
@@ -15,6 +15,18 @@ export const profileConfig: ProfileConfig = {
 			name: "Email",
 			icon: "fa7-solid:envelope",
 			url: "mailto:inuebisu@outlook.com",
+			showName: false,
+		},
+		{
+			name: "Telegram",
+			icon: "fa7-brands:telegram",
+			url: "https://t.me/inuEbisu",
+			showName: false,
+		},
+		{
+			name: "Notebook",
+			icon: "mdi:notebook",
+			url: "https://note.inuebisu.cn",
 			showName: false,
 		},
 		{

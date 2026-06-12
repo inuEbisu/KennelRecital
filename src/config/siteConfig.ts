@@ -9,7 +9,7 @@ export const siteConfig: SiteConfig = {
 	title: "犬窝闲谭",
 
 	// 站点副标题
-	subtitle: "",
+	subtitle: "And miles to go before I sleep",
 
 	// 站点 URL
 	site_url: "https://inuebisu.cn",
