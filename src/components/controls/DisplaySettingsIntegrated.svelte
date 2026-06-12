@@ -10,6 +10,7 @@ import { i18n } from "@i18n/translation";
 import {
 	getDefaultBannerCarouselEnabled,
 	getDefaultBannerTitleEnabled,
+	getDefaultChroma,
 	getDefaultGradientEnabled,
 	getDefaultHue,
 	getDefaultOverlayBlur,
@@ -17,6 +18,7 @@ import {
 	getDefaultOverlayOpacity,
 	getDefaultSakuraEnabled,
 	getDefaultWavesEnabled,
+	getChroma,
 	getHue,
 	getStoredBannerCarouselEnabled,
 	getStoredBannerTitleEnabled,
@@ -29,6 +31,7 @@ import {
 	getStoredWavesEnabled,
 	setBannerCarouselEnabled,
 	setBannerTitleEnabled,
+	setChroma,
 	setGradientEnabled,
 	setHue,
 	setOverlayBlur,
@@ -58,6 +61,8 @@ type OverlaySliderItem = {
 
 let hue = $state(getHue());
 const defaultHue = getDefaultHue();
+let chroma = $state(getChroma());
+const defaultChroma = getDefaultChroma();
 let wallpaperMode: WALLPAPER_MODE = $state(backgroundWallpaper.mode);
 const defaultWallpaperMode = backgroundWallpaper.mode;
 let currentLayout: "list" | "grid" = $state("list");
@@ -210,6 +215,7 @@ let overlaySliderItems = $derived<OverlaySliderItem[]>([
 
 function resetHue() {
 	hue = getDefaultHue();
+	chroma = getDefaultChroma();
 	requestAnimationFrame(refreshAllRangeProgress);
 }
 
@@ -475,6 +481,12 @@ $effect(() => {
 });
 
 $effect(() => {
+	if (chroma || chroma === 0) {
+		setChroma(chroma);
+	}
+});
+
+$effect(() => {
 	if (wallpaperMode === WALLPAPER_OVERLAY) {
 		if (isOverlayOpacitySwitchable) {
 			setOverlayOpacity(overlayOpacity);
@@ -501,7 +513,7 @@ $effect(() => {
             >
                 {i18n(I18nKey.themeColor)}
                 <button aria-label="Reset to Default" class="btn-regular w-7 h-7 rounded-md  active:scale-90"
-                        class:opacity-0={hue === defaultHue} class:pointer-events-none={hue === defaultHue} onclick={resetHue}>
+                        class:opacity-0={hue === defaultHue && chroma === defaultChroma} class:pointer-events-none={hue === defaultHue && chroma === defaultChroma} onclick={resetHue}>
                     <div class="text-(--btn-content)">
                         <Icon icon="fa7-solid:arrow-rotate-left" class="text-[0.875rem]"></Icon>
                     </div>
@@ -514,9 +526,20 @@ $effect(() => {
                 </div>
             </div>
         </div>
-        <div class="w-full h-6 px-1 bg-[oklch(0.80_0.10_0)] dark:bg-[oklch(0.70_0.10_0)] rounded select-none">
+        <div class="w-full h-6 px-1 rounded select-none" style="background: var(--color-selection-bar)">
             <input aria-label={i18n(I18nKey.themeColor)} type="range" min="0" max="360" bind:value={hue}
                    class="slider" id="colorSlider" step="5" style="width: 100%">
+        </div>
+        <div class="flex items-center justify-between mt-3 mb-2">
+            <span class="text-sm font-medium text-(--btn-content) opacity-80">{i18n(I18nKey.themeChroma)}</span>
+            <span class="transition bg-(--btn-regular-bg) min-w-12 h-7 px-2 rounded-md flex justify-center
+                font-bold text-sm items-center text-(--btn-content)">
+                {chroma.toFixed(3)}
+            </span>
+        </div>
+        <div class="w-full h-6 px-1 rounded select-none bg-(--btn-regular-bg)">
+            <input aria-label={i18n(I18nKey.themeChroma)} type="range" min="0" max="0.25" bind:value={chroma}
+                   class="slider" id="chromaSlider" step="0.005" style="width: 100%">
         </div>
     </div>
     {/if}
@@ -803,7 +826,7 @@ $effect(() => {
             -webkit-appearance none
             height 1.5rem
             border-radius 999px
-            background-image unquote("linear-gradient(90deg, var(--primary) 0 var(--range-progress, 50%), hsla(var(--hue), 22%, 28%, 0.18) var(--range-progress, 50%) 100%)")
+            background-image unquote("linear-gradient(90deg, var(--primary) 0 var(--range-progress, 50%), oklch(0.55 calc(var(--chroma) * 0.25) var(--hue) / 0.18) var(--range-progress, 50%) 100%)")
             transition background-image 0.15s ease-in-out
 
         input[type="range"].overlay-slider

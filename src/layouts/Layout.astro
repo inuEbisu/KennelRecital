@@ -52,6 +52,7 @@ const isHomePageCheck = isHomePage(Astro.url.pathname);
 // defines global css variables
 // why doing this in Layout instead of GlobalStyles: https://github.com/withastro/astro/issues/6728#issuecomment-1502203757
 const configHue = siteConfig.themeColor.hue;
+const configChroma = siteConfig.themeColor.chroma ?? 0.14;
 
 // 获取导航栏透明模式配置
 const navbarTransparentMode =
@@ -239,6 +240,7 @@ const siteLang = lang.replace("_", "-");
         BANNER_HEIGHT_EXTEND,
         PAGE_WIDTH,
         configHue,
+        configChroma,
         defaultMode: siteConfig.themeColor.defaultMode ?? "light",
         defaultWallpaperMode: backgroundWallpaper.mode,
         isWallpaperSwitchable:
@@ -291,6 +293,8 @@ const siteLang = lang.replace("_", "-");
       // Load the hue from local storage
       const hue = localStorage.getItem("hue") || configHue;
       document.documentElement.style.setProperty("--hue", hue);
+      const chroma = localStorage.getItem("chroma") || configChroma;
+      document.documentElement.style.setProperty("--chroma", chroma);
 
       // 设置卡片透明度（全屏透明模式下使用），优先使用用户自定义值
       const storedCardOpacity = localStorage.getItem("overlayCardOpacity");
@@ -535,6 +539,7 @@ const siteLang = lang.replace("_", "-");
     <style
       define:vars={{
         configHue,
+        configChroma,
         "page-width": `${siteConfig.pageWidth ?? PAGE_WIDTH}rem`,
       }}
     ></style>

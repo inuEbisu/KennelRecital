@@ -74,6 +74,7 @@ export const zh_CN: Translation = {
 	[Key.noData]: "暂无数据",
 
 	[Key.themeColor]: "主题色相",
+	[Key.themeChroma]: "主题色度",
 
 	[Key.lightMode]: "亮色",
 	[Key.darkMode]: "暗色",

@@ -76,6 +76,7 @@ export const en: Translation = {
 	[Key.noData]: "No data yet",
 
 	[Key.themeColor]: "Theme Color",
+	[Key.themeChroma]: "Theme Chroma",
 
 	[Key.lightMode]: "Light",
 	[Key.darkMode]: "Dark",

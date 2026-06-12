@@ -36,6 +36,15 @@ export function getDefaultHue(): number {
 	return Number.parseInt(configCarrier?.dataset.hue || fallback, 10);
 }
 
+export function getDefaultChroma(): number {
+	const fallback = "0.14";
+	if (typeof document === "undefined") {
+		return Number.parseFloat(fallback);
+	}
+	const configCarrier = document.getElementById("config-carrier");
+	return Number.parseFloat(configCarrier?.dataset.chroma || fallback);
+}
+
 export function getDefaultTheme(): LIGHT_DARK_MODE {
 	// 如果配置文件中设置了 defaultMode，使用配置的值
 	// 否则使用 DEFAULT_THEME（向后兼容）
@@ -69,6 +78,14 @@ export function getHue(): number {
 	return stored ? Number.parseInt(stored, 10) : getDefaultHue();
 }
 
+export function getChroma(): number {
+	if (typeof window === "undefined" || !window.localStorage) {
+		return getDefaultChroma();
+	}
+	const stored = localStorage.getItem("chroma");
+	return stored ? Number.parseFloat(stored) : getDefaultChroma();
+}
+
 export function setHue(hue: number): void {
 	// 先检查是否在浏览器环境
 	if (
@@ -84,6 +101,23 @@ export function setHue(hue: number): void {
 		return;
 	}
 	r.style.setProperty("--hue", String(hue));
+}
+
+export function setChroma(chroma: number): void {
+	if (
+		typeof window === "undefined" ||
+		!window.localStorage ||
+		typeof document === "undefined"
+	) {
+		return;
+	}
+	const normalizedChroma = Math.min(0.25, Math.max(0, chroma));
+	localStorage.setItem("chroma", String(normalizedChroma));
+	const r = document.querySelector(":root") as HTMLElement;
+	if (!r) {
+		return;
+	}
+	r.style.setProperty("--chroma", String(normalizedChroma));
 }
 
 export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {

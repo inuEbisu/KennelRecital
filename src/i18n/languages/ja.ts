@@ -76,6 +76,7 @@ export const ja: Translation = {
 	[Key.noData]: "データなし",
 
 	[Key.themeColor]: "テーマカラー",
+	[Key.themeChroma]: "テーマクロマ",
 
 	[Key.lightMode]: "ライト",
 	[Key.darkMode]: "ダーク",

@@ -24,9 +24,11 @@ export const siteConfig: SiteConfig = {
 	// 主题色
 	themeColor: {
 		// 主题色的默认色相，范围从 0 到 360。例如：红色：0，青色：200，蓝绿色：250，粉色：345
-		hue: 80,
+		hue: 40,
+		// 主题色的默认色度，范围建议 0 到 0.2，值越低越灰
+		chroma: 0.05,
 		// 是否对访问者隐藏主题色选择器
-		fixed: true,
+		fixed: false,
 		// 默认模式："light" 亮色，"dark" 暗色，"system" 跟随系统
 		defaultMode: "system",
 	},
@@ -107,7 +109,7 @@ export const siteConfig: SiteConfig = {
 	categoryBar: true,
 
 	// 归档页是否折叠非最新年份文章，禁用后默认展开全部年份
-	foldArticle: true,
+	foldArticle: false,
 
 	// 文章列表布局配置
 	postListLayout: {

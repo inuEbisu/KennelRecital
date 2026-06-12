@@ -262,7 +262,7 @@ onMount(async () => {
 						<div class="w-[15%] md:w-[10%] relative dash-line h-full flex items-center">
 							<div
 									class="transition-all mx-auto w-1 h-1 rounded group-hover:h-5
-                       bg-[oklch(0.5_0.05_var(--hue))] group-hover:bg-(--primary)
+                       bg-[oklch(0.5_calc(var(--chroma)*0.36)_var(--hue))] group-hover:bg-(--primary)
                        outline outline-4 z-50
                        outline-(--card-bg)
                        group-hover:outline-(--btn-plain-bg-hover)
@@ -278,7 +278,7 @@ onMount(async () => {
 						>
 							{#if post.data.category}
 								<span class="shrink-0 inline-block text-xs font-medium px-1.5 py-0.5 rounded
-								             bg-[oklch(0.95_0.025_var(--hue))] dark:bg-[oklch(0.25_0.025_var(--hue))]
+								             bg-[oklch(0.95_calc(var(--chroma)*0.18)_var(--hue))] dark:bg-[oklch(0.25_calc(var(--chroma)*0.18)_var(--hue))]
 								             text-(--primary) group-hover:bg-(--primary) group-hover:text-white!
 								             transition-colors">
 									{post.data.category}

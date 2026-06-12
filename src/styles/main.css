@@ -435,11 +435,11 @@ html {
 
     .btn-regular-dark {
         @apply flex items-center justify-center
-        bg-[oklch(0.45_0.01_var(--hue))] hover:bg-[oklch(0.50_0.01_var(--hue))] active:bg-[oklch(0.55_0.01_var(--hue))]
-        dark:bg-[oklch(0.30_0.02_var(--hue))] dark:hover:bg-[oklch(0.35_0.03_var(--hue))] dark:active:bg-[oklch(0.40_0.03_var(--hue))]
+        bg-[oklch(0.45_calc(var(--chroma)*0.07)_var(--hue))] hover:bg-[oklch(0.50_calc(var(--chroma)*0.07)_var(--hue))] active:bg-[oklch(0.55_calc(var(--chroma)*0.07)_var(--hue))]
+        dark:bg-[oklch(0.30_calc(var(--chroma)*0.14)_var(--hue))] dark:hover:bg-[oklch(0.35_calc(var(--chroma)*0.21)_var(--hue))] dark:active:bg-[oklch(0.40_calc(var(--chroma)*0.21)_var(--hue))]
     }
     .btn-regular-dark.success {
-        @apply bg-[oklch(0.75_0.14_var(--hue))] dark:bg-[oklch(0.75_0.14_var(--hue))]
+        @apply bg-[oklch(0.75_var(--chroma)_var(--hue))] dark:bg-[oklch(0.75_var(--chroma)_var(--hue))]
     }
 }
 
