@@ -15,8 +15,7 @@ export const siteConfig: SiteConfig = {
 	site_url: "https://inuebisu.cn",
 
 	// 站点描述
-	description:
-		"犬戎的部落格 / inuEbisu's personal blog.",
+	description: "犬戎的部落格 / inuEbisu's personal blog.",
 
 	// 站点关键词
 	keywords: ["inuEbisu", "犬窝闲谭", "博客"],

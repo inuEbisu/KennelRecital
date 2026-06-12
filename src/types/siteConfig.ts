@@ -69,10 +69,10 @@ export type SiteConfig = {
 		logo?:
 			| false
 			| {
-			type: "icon" | "image" | "url";
-			value: string; // icon名、本地图片路径或网络图片url
-			alt?: string; // 图片alt文本
-		};
+					type: "icon" | "image" | "url";
+					value: string; // icon名、本地图片路径或网络图片url
+					alt?: string; // 图片alt文本
+			  };
 		title?: string; // 导航栏标题，如果不设置则使用 title
 		showTitle?: boolean; // 是否显示导航栏标题，默认 true
 		widthFull?: boolean; // 导航栏是否占满屏幕宽度
