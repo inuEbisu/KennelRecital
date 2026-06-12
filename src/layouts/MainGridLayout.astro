@@ -43,6 +43,7 @@ import "@/styles/expressive-code.css";
 
 interface Props {
 	title?: string;
+	pageTitle?: string;
 	banner?: string;
 	description?: string;
 	lang?: string;
@@ -63,6 +64,7 @@ const backgroundImages = getBackgroundImages();
 
 const {
 	title,
+	pageTitle,
 	banner,
 	description,
 	lang,
@@ -273,7 +275,7 @@ const bannerCarouselInterval = Math.max(
 );
 ---
 
-<Layout title={title} banner={banner} description={description} lang={lang} setOGTypeArticle={setOGTypeArticle} postSlug={postSlug}>
+<Layout title={title} pageTitle={pageTitle} banner={banner} description={description} lang={lang} setOGTypeArticle={setOGTypeArticle} postSlug={postSlug}>
 
 
 <!-- 为全屏壁纸模式添加body类 -->
