@@ -39,18 +39,8 @@ if (footerConfig.enable) {
       {customFooterHtml && <div set:html={customFooterHtml} />}
     </div>
     <div class="m-0.5">
-      &copy; <span id="copyright-year">{currentYear}</span>
-      {profileConfig.name}. All Rights Reserved. /
-      <a
-        class="transition link text-(--primary) font-medium"
-        target="_blank"
-        href={url("rss.xml")}>RSS</a
-      > /
-      <a
-        class="transition link text-(--primary) font-medium"
-        target="_blank"
-        href={url("sitemap-index.xml")}>Sitemap</a
-      >
+      &copy; <span id="copyright-year">2020-{currentYear}</span>
+      {profileConfig.name}. All Rights Reserved.
     </div>
     <div class="m-0.5">
       Powered by
@@ -63,6 +53,13 @@ if (footerConfig.enable) {
         class="transition link text-(--primary) font-medium"
         target="_blank"
         href="https://github.com/CuteLeaf/Firefly">Firefly</a
+      >
+    </div>
+    <div>
+      <a
+        class="transition link text-(--primary) font-medium"
+        target="_blank"
+        href="https://beian.miit.gov.cn/">黔ICP备2022001114号-2</a
       >
     </div>
     <!-- 
