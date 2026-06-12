@@ -59,9 +59,10 @@ const hasDisplaySettings =
 let links: NavBarLink[] = navBarConfig.links;
 
 // 处理导航栏 Logo 图片
-const logoValue = siteConfig.navbar.logo?.value || "";
+const navbarLogo = siteConfig.navbar.logo || null;
+const logoValue = navbarLogo ? navbarLogo.value : "";
 const isLocalSrcLogo =
-	siteConfig.navbar.logo?.type === "image" &&
+	navbarLogo?.type === "image" &&
 	logoValue &&
 	!logoValue.startsWith("/") &&
 	!logoValue.startsWith("http");
@@ -92,12 +93,12 @@ if (isLocalSrcLogo) {
                     "flex flex-row items-center text-md",
                     siteConfig.navbar.followTheme ? "text-(--primary)" : "dark:text-white text-black"
                 ]}>
-                                    {siteConfig.navbar.logo?.type === "icon" ? (
-                                        <Icon name={siteConfig.navbar.logo.value || "material-symbols:home-pin-outline"} is:inline class="text-[1.75rem] mb-1 mr-2" />
-                                    ) : siteConfig.navbar.logo?.type === "image" && logoImg ? (
+                                    {navbarLogo?.type === "icon" ? (
+                                        <Icon name={navbarLogo.value || "material-symbols:home-pin-outline"} is:inline class="text-[1.75rem] mb-1 mr-2" />
+                                    ) : navbarLogo?.type === "image" && logoImg ? (
                                         <Picture
                                             src={logoImg}
-                                            alt={siteConfig.navbar.logo.alt || siteConfig.title}
+                                            alt={navbarLogo.alt || siteConfig.title}
                                             class="h-7 w-7 mb-1 mr-2 object-contain"
                                             formats={getImageFormats()}
                                             fallbackFormat={getFallbackFormat()}
@@ -105,13 +106,11 @@ if (isLocalSrcLogo) {
                                             loading="eager"
                                             fetchpriority="high"
                                         />
-                                    ) : siteConfig.navbar.logo?.type === "image" ? (
-                                        <img src={url(siteConfig.navbar.logo.value)} alt={siteConfig.navbar.logo.alt || siteConfig.title} class="h-7 w-7 mb-1 mr-2 object-contain" fetchpriority="high" />
-                                    ) : siteConfig.navbar.logo?.type === "url" ? (
-                                        <img src={siteConfig.navbar.logo.value} alt={siteConfig.navbar.logo.alt || siteConfig.title} class="h-7 w-7 mb-1 mr-2 object-contain" fetchpriority="high" />
-                                    ) : (
-                                        <Icon name="material-symbols:home-pin-outline" is:inline class="text-[1.75rem] mb-1 mr-2" />
-                                    )}
+                                    ) : navbarLogo?.type === "image" ? (
+                                        <img src={url(navbarLogo.value)} alt={navbarLogo.alt || siteConfig.title} class="h-7 w-7 mb-1 mr-2 object-contain" fetchpriority="high" />
+                                    ) : navbarLogo?.type === "url" ? (
+                                        <img src={navbarLogo.value} alt={navbarLogo.alt || siteConfig.title} class="h-7 w-7 mb-1 mr-2 object-contain" fetchpriority="high" />
+                                    ) : null}
                     {navbarTitle}
                 </div>
             </a>

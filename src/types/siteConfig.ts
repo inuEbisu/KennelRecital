@@ -66,7 +66,9 @@ export type SiteConfig = {
 
 	navbar: {
 		/** 导航栏Logo图标，可选类型：icon库、本地图片、网络图片链接 */
-		logo?: {
+		logo?:
+			| false
+			| {
 			type: "icon" | "image" | "url";
 			value: string; // icon名、本地图片路径或网络图片url
 			alt?: string; // 图片alt文本
