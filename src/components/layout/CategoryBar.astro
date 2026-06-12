@@ -189,6 +189,18 @@ const archiveUrl = url("/archive/");
 <script>
   let delayedCategoryBarScrollTimer: number | undefined;
 
+  function isCategoryBarPage(currentUrl: URL) {
+    const pathname = currentUrl.pathname.replace(/\/$/, "") || "/";
+    return (
+      pathname === "/articles" ||
+      pathname.startsWith("/articles/") ||
+      pathname === "/archive" ||
+      pathname.startsWith("/archive/") ||
+      pathname === "/categories" ||
+      pathname.startsWith("/categories/")
+    );
+  }
+
   function getCategoryBarState(bar: HTMLElement, currentUrl: URL) {
     const pathname = currentUrl.pathname.replace(/\/$/, "");
     const articlesPath = (bar.getAttribute("data-articles-path") || "/articles").replace(/\/$/, "");
@@ -276,8 +288,22 @@ const archiveUrl = url("/archive/");
     currentUrl = new URL(window.location.href),
     options: { scrollBehavior?: ScrollBehavior; deferScroll?: boolean } = {},
   ) {
+    const wrapper = document.getElementById("category-bar-wrapper");
     const bar = document.getElementById("category-bar");
     if (!bar) return;
+
+    const shouldShow = isCategoryBarPage(currentUrl);
+    wrapper?.classList.toggle("hidden", !shouldShow);
+    if (shouldShow) {
+      wrapper?.removeAttribute("aria-hidden");
+    } else {
+      wrapper?.setAttribute("aria-hidden", "true");
+      if (delayedCategoryBarScrollTimer) {
+        window.clearTimeout(delayedCategoryBarScrollTimer);
+        delayedCategoryBarScrollTimer = undefined;
+      }
+      return;
+    }
 
     const swupContainer = document.getElementById("swup-container");
     if (swupContainer) {
@@ -427,7 +453,11 @@ const archiveUrl = url("/archive/");
       const bar = document.getElementById("category-bar");
       if (!bar) return;
       const targetUrl = new URL(visit.to.url, window.location.href);
+      updateCategoryBar(targetUrl, { scrollBehavior: "auto", deferScroll: false });
       setActiveCategory(bar, targetUrl);
+    });
+    window.swup.hooks.on("page:view", () => {
+      updateCategoryBar(new URL(window.location.href), { scrollBehavior: "auto" });
     });
   }
   if (window.swup?.hooks) {

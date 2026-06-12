@@ -120,7 +120,6 @@ const isCategoryBarPage =
 	normalizedPathname.startsWith("/archive/") ||
 	normalizedPathname === "/categories" ||
 	normalizedPathname.startsWith("/categories/");
-const shouldRenderCategoryBar = !!siteConfig.categoryBar && isCategoryBarPage;
 
 // 检查是否在文章详情页
 const isPostPage = !!postSlug;
@@ -891,8 +890,16 @@ const bannerCarouselInterval = Math.max(
                     
             {/* 主内容区包装器 - 包含静态栏位和swup容器，作为单个grid item */}
             <div class={staticBarClass}>
-                {/* 分类导航栏 - 仅在文章列表、归档、分类页显示 */}
-                {shouldRenderCategoryBar && <div id="category-bar-wrapper"><CategoryBar currentPostCategory={postCategory} /></div>}
+                {/* 分类导航栏 - 静态渲染，客户端按当前 URL 显隐以适配 Swup 页面切换 */}
+                {siteConfig.categoryBar && (
+                    <div
+                        id="category-bar-wrapper"
+                        class:list={{ hidden: !isCategoryBarPage }}
+                        aria-hidden={isCategoryBarPage ? undefined : "true"}
+                    >
+                        <CategoryBar currentPostCategory={postCategory} />
+                    </div>
+                )}
                 {/* 主内容区 - 始终渲染，确保 Swup 容器存在 */}
                 <main
                     id="swup-container"
