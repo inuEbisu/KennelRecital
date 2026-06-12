@@ -1,16 +1,118 @@
 ---
-title: 伙伴
-pubDate: 2026-01-23
+title: "伙伴"
+description: "永远的好伙伴！"
 ---
 
-- [direwolf](https://blog.drwf.ink/)
-- [捌拾壹](https://blog.konpoku.top/)
-- [roife](https://roife.github.io/)
-- [阿方](https://fang.blog.miri.site/)
-- [iceBear67](https://blog.0w0.ing/)
-- [5dbwat4](https://5dbwat4.top/)
-- [咸鱼暄](https://xuan-insr.github.io/)
-- [timetraveler314](https://chernoff.bond/)
-- [megakite](https://megakite.icu/)
-- [玻狸](https://note.glassfoxowo.com/)
-- [tdiant](https://nyan.best/)
+{/* ========== 站点信息 ========= */}
+
+export const site = {
+  name: "犬窝闲谭",
+  desc: "And miles to go before I sleep",
+  url: "https://inuebisu.cn",
+  avatar: "https://inuebisu.cn/avatar.png",
+  email: "inuebisu@outlook.com",
+};
+
+<div class="not-prose my-4">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    {/* 左栏：本站信息 */}
+    <div class="rounded-2xl border border-(--line-divider) overflow-hidden flex flex-col">
+      <div class="p-5 sm:p-6 flex flex-col flex-1">
+        {/* 头部：头像 + 名称 */}
+        <div class="flex items-center gap-4 mb-5">
+          <div class="relative shrink-0">
+            <div class="w-16 h-16 rounded-xl overflow-hidden ring-2 ring-(--primary)/20">
+              <img
+                src={site.avatar}
+                alt={site.name}
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold">{site.name}</h3>
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">{site.desc}</p>
+          </div>
+        </div>
+
+        {/* 站点信息列表（可复制） */}
+        <div class="space-y-2.5 flex-1">
+          {[
+            { label: "站点名称", value: site.name },
+            { label: "站点描述", value: site.desc },
+            { label: "站点链接", value: site.url },
+            { label: "头像链接", value: site.avatar },
+          ].map((item) => (
+            <div class="flex items-center justify-between gap-2 rounded-lg bg-black/5 dark:bg-white/5 px-3 py-2">
+              <div class="min-w-0">
+                <p class="text-[0.65rem] text-neutral-400 dark:text-neutral-500 mb-0.5">{item.label}</p>
+                <p class="text-xs font-medium truncate">{item.value}</p>
+              </div>
+              <button onclick={`navigator.clipboard.writeText('${item.value.replace(/'/g, "\\'")}');this.querySelectorAll('svg')[0].classList.add('hidden');this.querySelectorAll('svg')[1].classList.remove('hidden');setTimeout(()=>{this.querySelectorAll('svg')[0].classList.remove('hidden');this.querySelectorAll('svg')[1].classList.add('hidden')},1500)`} class="shrink-0 w-7 h-7 flex items-center justify-center rounded-md bg-black/10 dark:bg-white/10 text-(--btn-content) hover:opacity-80 transition-opacity cursor-pointer">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                <svg class="w-3.5 h-3.5 hidden text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              </button>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+
+    {/* 右栏：申请流程 */}
+    <div class="rounded-2xl border border-(--line-divider) overflow-hidden flex flex-col">
+      <div class="p-5 sm:p-6 flex flex-col flex-1">
+        <h3 class="text-lg font-bold mb-5 flex items-center gap-2">
+          <span class="w-7 h-7 rounded-lg bg-(--primary)/10 flex items-center justify-center text-(--primary) text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          </span>
+          申请友链
+        </h3>
+
+        <div class="space-y-0 flex-1">
+          {/* Step 1 */}
+          <div class="flex gap-3.5">
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded-full bg-(--primary) text-white text-xs font-bold flex items-center justify-center shrink-0">1</div>
+              <div class="w-0.5 flex-1 bg-(--line-divider) my-1.5"></div>
+            </div>
+            <div class="pb-4">
+              <p class="font-semibold text-sm mb-1">添加本站友链</p>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">请先在您的网站友链页面添加本站信息，可直接复制左侧各字段</p>
+            </div>
+          </div>
+
+          {/* Step 2 */}
+          <div class="flex gap-3.5">
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded-full bg-(--primary) text-white text-xs font-bold flex items-center justify-center shrink-0">2</div>
+              <div class="w-0.5 flex-1 bg-(--line-divider) my-1.5"></div>
+            </div>
+            <div class="pb-4">
+              <p class="font-semibold text-sm mb-1">评论区留言/发送申请邮件至：<code class="px-1.5 py-0.5 rounded bg-black/5 dark:bg-white/10 text-[0.7rem]">{site.email}</code></p>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">申请模板，把内容复制修改后到评论区或邮件中发送</p>
+              <div class="relative rounded-lg bg-black/5 dark:bg-white/5 p-4 pr-10 text-[0.7rem] leading-relaxed overflow-x-auto whitespace-pre">
+                <button onclick="navigator.clipboard.writeText('站点名称：您的站点名称\n站点描述：您的站点描述\n站点链接：您的站点链接\n头像链接：您的站点头像');this.querySelectorAll('svg')[0].classList.add('hidden');this.querySelectorAll('svg')[1].classList.remove('hidden');setTimeout(()=>{this.querySelectorAll('svg')[0].classList.remove('hidden');this.querySelectorAll('svg')[1].classList.add('hidden')},1500)" class="absolute top-2 right-2 w-7 h-7 flex items-center justify-center rounded-md bg-black/10 dark:bg-white/10 text-(--btn-content) hover:opacity-80 transition-opacity cursor-pointer">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                  <svg class="w-3.5 h-3.5 hidden text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                </button>
+                {`站点名称：您的站点名称\n站点描述：您的站点描述\n站点链接：您的站点链接\n头像链接：您的站点头像`}
+              </div>
+            </div>
+          </div>
+
+          {/* Step 3 */}
+          <div class="flex gap-3.5">
+            <div class="flex flex-col items-center">
+              <div class="w-7 h-7 rounded-full bg-(--primary) text-white text-xs font-bold flex items-center justify-center shrink-0">3</div>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-1">静候佳音</p>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed">确认信息无误后会尽快添加您的友链</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
