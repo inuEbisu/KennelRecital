@@ -1,27 +1,25 @@
 ---
-import { getEntry, render } from 'astro:content'
-import LayoutDefault from '~/layouts/LayoutDefault.astro'
-import { formatDate } from '~/utils'
 
-const { translate: t } = Astro.locals
-const aboutPost = await getEntry('spec', 'about')
+import { getEntry, render } from "astro:content";
+import Markdown from "@components/common/Markdown.astro";
+import I18nKey from "@/i18n/i18nKey";
+import { i18n } from "@/i18n/translation";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+
+const aboutPost = await getEntry("spec", "about");
+
 if (!aboutPost) {
-  throw new Error('No about post found')
+	throw new Error("About page content not found");
 }
-const { Content } = await render(aboutPost)
----
 
-<LayoutDefault>
-  <header flex="~ col gap-2">
-    <h1 class="post-title">
-      <a class="not-prose">{aboutPost.data.title}</a>
-    </h1>
-    <div class="text-3.5">
-      <span>{t('updated_at')}</span>
-      <time>{formatDate(aboutPost.data.pubDate)}</time>
+const { Content } = await render(aboutPost);
+---
+<MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)}>
+    <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full ">
+            <Markdown class="mt-2">
+                <Content />
+            </Markdown>
+        </div>
     </div>
-  </header>
-  <article class="prose">
-    <Content />
-  </article>
-</LayoutDefault>
+</MainGridLayout>

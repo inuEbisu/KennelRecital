@@ -1,8 +1,12 @@
 ---
 title: 流离
-pubDate: 2022-04-25
-categories: ['文字']
+published: 2022-04-25
+category: 文字
+tags: []
+draft: false
+comment: true
 ---
+
 
 辽阔无垠的北冰洋。
 

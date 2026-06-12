@@ -1,46 +1,70 @@
 ---
-import type { GetStaticPaths, InferGetStaticPropsType } from 'astro'
-import { themeConfig } from '~/.config'
-import Pagination from '~/components/Pagination.astro'
-import LayoutDefault from '~/layouts/LayoutDefault.astro'
-import LayoutPost from '~/layouts/LayoutPost.astro'
-import { getPostDescription, getPosts } from '~/utils'
-
-const { translate: t } = Astro.locals
-
+import type { GetStaticPaths } from "astro";
+import Pagination from "@/components/common/Pagination.astro";
+import PostPage from "@/components/layout/PostPage.astro";
+import { siteConfig } from "@/config";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
+import { getSortedPosts } from "@/utils/content-utils";
 export const getStaticPaths = (async ({ paginate }) => {
-  const posts = await getPosts()
-  posts.sort((a, b) => {
-    if (a.data.pin && !b.data.pin) return -1
-    if (!a.data.pin && b.data.pin) return 1
-    return 0
-  })
-  return paginate(posts, { pageSize: themeConfig.site.pageSize })
-}) satisfies GetStaticPaths
+	const allBlogPosts = await getSortedPosts();
+	// 使用配置中的文章数量
+	const pageSize = siteConfig.pagination.postsPerPage;
+	return paginate(allBlogPosts, { pageSize });
+}) satisfies GetStaticPaths;
+// https://github.com/withastro/astro/issues/6507#issuecomment-1489916992
 
-type Props = InferGetStaticPropsType<typeof getStaticPaths>
+const { page } = Astro.props;
 
-const { page } = Astro.props
+const len = page.data.length;
 ---
 
-<LayoutDefault>
-  <section contain-layout flex="~ col gap-7.5">
-    {
-      page.data.map((post) => (
-        <LayoutPost post={post}>
-          <p class="line-clamp-4">{getPostDescription(post)}</p>
-        </LayoutPost>
-      ))
+<MainGridLayout>
+  <PostPage page={page} />
+  {
+    page.total > page.size && (
+      <Pagination
+        class="mx-auto onload-animation"
+        page={page}
+        style={`animation-delay: calc(var(--content-delay) + ${len * 50}ms)`}
+      />
+    )
+  }
+</MainGridLayout>
+
+<script>
+  // 响应式分页处理脚本
+  document.addEventListener("DOMContentLoaded", function () {
+    // 如果启用了响应式分页，添加相应的CSS类
+    const responsiveEnabled = true; // ${siteConfig.pagination.responsive}
+    if (responsiveEnabled) {
+      const deviceType = getDeviceType();
+      document.body.classList.add(`device-${deviceType}`);
+
+      // 监听窗口大小变化
+      let resizeTimeout: any;
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function () {
+          const newDeviceType = getDeviceType();
+          const currentDeviceType = document.body.className.match(
+            /device-(mobile|tablet|desktop)/
+          )?.[1];
+
+          if (currentDeviceType !== newDeviceType) {
+            document.body.classList.remove(`device-${currentDeviceType}`);
+            document.body.classList.add(`device-${newDeviceType}`);
+          }
+        }, 250);
+      });
     }
-  </section>
-  <Pagination
-    showLeft={Boolean(page.url.prev)}
-    leftTitle={t('prev')}
-    leftUrl={page.url.prev}
-    showRight={Boolean(page.url.next)}
-    rightTitle={t('next')}
-    rightUrl={page.url.next}
-    currentPage={page.currentPage}
-    totalPage={page.lastPage}
-  />
-</LayoutDefault>
+  });
+
+  function getDeviceType() {
+    if (typeof window === "undefined") return "desktop";
+
+    const width = window.innerWidth;
+    if (width < 768) return "mobile";
+    if (width < 1024) return "tablet";
+    return "desktop";
+  }
+</script>

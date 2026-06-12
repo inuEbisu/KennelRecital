@@ -1,33 +1,42 @@
-import { glob } from 'astro/loaders'
-import { defineCollection, z } from 'astro:content'
+import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
+import { z } from "astro/zod";
 
-const posts = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/posts' }),
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      pubDate: z.coerce.date(),
-      modDate: z.coerce.date().optional(),
-      categories: z.array(z.string()),
-      draft: z.boolean().default(false).optional(),
-      description: z.string().optional(),
-      customData: z.string().optional(),
-      banner: image()
-        .refine(img => Math.max(img.width, img.height) <= 4096, { message: 'Width and height of the banner must less than 4096 pixels' })
-        .optional(),
-      author: z.string().optional(),
-      commentsUrl: z.string().optional(),
-      source: z.optional(z.object({ url: z.string(), title: z.string() })),
-      enclosure: z.optional(z.object({ url: z.string(), length: z.number(), type: z.string() })),
-      pin: z.boolean().default(false).optional(),
-    }),
-})
+const postsCollection = defineCollection({
+	loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/posts" }),
+	schema: z.object({
+		title: z.string(),
+		published: z.date(),
+		updated: z.date().optional(),
+		draft: z.boolean().optional().default(false),
+		description: z.string().optional().default(""),
+		image: z.string().optional().default(""),
+		tags: z.array(z.string()).optional().default([]),
+		category: z.string().optional().nullable().default(""),
+		lang: z.string().optional().default(""),
+		pinned: z.boolean().optional().default(false),
+		author: z.string().optional().default(""),
+		sourceLink: z.string().optional().default(""),
+		licenseName: z.string().optional().default(""),
+		licenseUrl: z.string().optional().default(""),
+		comment: z.boolean().optional().default(true),
+		password: z.string().optional().default(""),
+		passwordHint: z.string().optional().default(""),
 
-const spec = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/spec' }),
-})
+		/* For internal use */
+		prevTitle: z.string().default(""),
+		prevSlug: z.string().default(""),
+		nextTitle: z.string().default(""),
+		nextSlug: z.string().default(""),
+	}),
+});
+
+const specCollection = defineCollection({
+	loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/spec" }),
+	schema: z.object({}),
+});
 
 export const collections = {
-  posts,
-  spec,
-}
+	posts: postsCollection,
+	spec: specCollection,
+};

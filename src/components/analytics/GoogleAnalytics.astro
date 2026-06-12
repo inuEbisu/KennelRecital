@@ -1,21 +1,19 @@
 ---
 interface Props {
-  id: string
+	analyticsId: string;
 }
 
-const { id } = Astro.props
-
-const gtagUrl = `https://www.googletagmanager.com/gtag/js?id=${id}`
+const { analyticsId } = Astro.props;
 ---
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script is:inline async src={gtagUrl}></script>
-<script is:inline define:vars={{ id }}>
-  window.dataLayer = window.dataLayer || []
-  function gtag() {
-    // eslint-disable-next-line prefer-rest-params
-    dataLayer.push(arguments)
-  }
-  gtag('js', new Date())
-  gtag('config', id)
+<!-- Google tag (gtag.js) -->
+<script is:inline data-swup-ignore-script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}></script>
+<script is:inline data-swup-ignore-script define:vars={{analyticsId}}>window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+gtag('config', analyticsId);
 </script>

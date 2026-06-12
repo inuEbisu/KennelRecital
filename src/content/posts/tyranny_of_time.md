@@ -1,8 +1,12 @@
 ---
 title: 在时间的暴政之下
-pubDate: 2023-06-07
-categories: ['文字']
+published: 2023-06-07
+category: 文字
+tags: []
+draft: false
+comment: true
 ---
+
 
 > （2023 全国甲卷）阅读下面的材料，根据要求写作。（60分）
 >

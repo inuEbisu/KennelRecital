@@ -1,211 +1,298 @@
-# Typography
 
-<p align='center'>
-  <img src='./public/typograph-og.jpg' alt='Typography' width='600'/>
-</p>
+<img src="./docs/images/1131.png" width = "350" height = "500" alt="Firefly" align=right />
 
-<h6 align='center'>
-<a href="https://astro-theme-typography.vercel.app/">Live Demo</a>
-</h6>
-<h5 align='center'>
-<b>This work is rewrite from <a href="https://github.com/sumimakito/hexo-theme-typography">hexo-theme-Typography</a></b>
-</h5>
-<p align='center'>
-<b>English</b> | <a href="./README.zh-CN.md">简体中文</a>
-</p>
+<div align="center">
 
-## Features
+# 流萤 / Firefly 
+> 一款清新美观的 Astro 静态博客主题模板
+> 
+> ![Node.js >= 22](https://img.shields.io/badge/node.js-%3E%3D22-brightgreen) 
+![pnpm >= 9](https://img.shields.io/badge/pnpm-%3E%3D9-blue)
+![Astro](https://img.shields.io/badge/Astro-6.4.4-orange)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9.2-blue)
+>
+> [![Stars](https://img.shields.io/github/stars/CuteLeaf/Firefly?style=social)](https://github.com/CuteLeaf/Firefly/stargazers)
+[![Forks](https://img.shields.io/github/forks/CuteLeaf/Firefly?style=social)](https://github.com/CuteLeaf/Firefly/network/members)
+[![Issues](https://img.shields.io/github/issues/CuteLeaf/Firefly)](https://github.com/CuteLeaf/Firefly/issues)
+> 
+> [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Z8Z41NQALY)
+>
+> **QQ交流群：[1087127207](https://qm.qq.com/q/ZGsFa8qX2G)**
+> 
+> ![GitHub License](https://img.shields.io/github/license/CuteLeaf/Firefly)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/CuteLeaf/Firefly)
+[![爱发电赞助](https://img.shields.io/badge/爱发电-赞助作者-ff69b4.svg)](https://ifdian.net/a/cuteleaf)
 
-- Build with **Astro**, **TypeScript** and **UnoCSS**
-- **Fast**. 100% [Pagespeed Score](https://pagespeed.web.dev/analysis/https-astro-theme-typography-vercel-app/j34nq9tx0s?form_factor=desktop).
-- **Typography** Derived from prevalent Chinese typographic norms and aims to provide an enhanced reading experience for website visitors.
-- **Responsive**. Responsive and works well on all screen sizes.
-- **Accessible**. A well thought out semantic and accessible content.
-- **SEO friendly**.Open Graph and Twitter Cards support for a better social sharing experience.
-- **Sitemap** and **RSS feed** for search engines.
-- i18n support.
-- Support Disqus, Giscus, Twikoo as comment service.
-- Dark mode support.
+</div>
 
-## Demo
 
-> Submit a PR to add your blog Demo.
-
-- [Live Demo](https://astro-theme-typography.vercel.app/)
-- [My Blog](https://blog.moeyua.com/)
-- [Julyfun's Blog (how to fully build this blog using `bun` in minutes)](https://julyfun.fun/posts/%E5%85%89%E9%80%9F%E6%90%AD%E5%BB%BA%E8%BF%99%E6%A0%B7%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/)
-- [Jinx's Blog](https://blog.mytest.cc/)
-- [Unconventional Reading Notes](https://books.beyondxin.top/)
-
-## Getting Started
-
-Typography is a minimal, responsive and SEO-friendly Astro blog theme. This guide will help you get started with a new project.
-
-### Quick Start
-
-You can fork the repository to your account by clicking the Fork button in the upper right corner, click the button below, select the repository you just forked, click the Import button, and you will be taken to the project configuration page.
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start)
-
-Or you can refer to the [Astro](https://docs.astro.build/guides/deploy/) documentation to deploy to your favorite platform.
-
-### Add post
-
-You can add content by creating a new markdown file in `src/content/posts`. The file need metadata in the frontmatter, like this:
-
-```md
 ---
-title: title
-pubDate: 2021-08-01
-categories: ["article"]
-description: "description"
+📖 README：
+**[简体中文](README.md)** | **[繁體中文](docs/README.zh-TW.md)** | **[English](README.en.md)** | **[日本語](docs/README.ja.md)** | **[Русский](docs/README.ru.md)**
+
+🚀 快速指南：
+[**🖥️在线预览**](https://firefly.cuteleaf.cn/) /
+[**📝使用文档**](https://docs-firefly.cuteleaf.cn/) /
+[**🍀我的博客**](https://blog.cuteleaf.cn) 
+
+⚡ 静态站点生成: 基于Astro的超快加载速度和SEO优化
+
+🎨 现代化设计: 简洁美观的界面，支持自定义主题色
+
+📱 移动友好: 完美的响应式体验，移动端专项优化
+
+🔧 高度可配置: 大部分功能模块均可通过配置文件自定义
+
+<img alt="firefly" src="./docs/images/1.webp" />
+<img alt="Lighthouse" src="./docs/images/Lighthouse.png" />
+
+>[!TIP]
+>
+>Firefly 是一款基于 Astro 框架和 Fuwari 模板开发的清新美观且现代化个人博客主题模板，专为技术爱好者和内容创作者设计。该主题融合了现代 Web 技术栈，提供了丰富的功能模块和高度可定制的界面，让您能够轻松打造出专业且美观的个人博客网站。
+> 
+>在重要的布局上，Firefly 创新性地增加了左右双侧边栏、文章网格(多列)布局、瀑布流布局。
+>
+>增加了站点统计、日历、文章目录、音乐播放器、快捷分类导航等小组件，让侧边栏和整体页面布局更加丰富。
+>
+>同时也增加了分享海报、相关文章推荐、随机文章等组件，让文章页面内容更丰富。
+>
+>**如果你参考或使用了 Firefly 以上组件设计和相关代码，请注明来自 Firefly。**
+>
+>Firefly 也保留了原版 fuwari 的布局，可根据自己的喜好在配置文件中自由切换。
+>
+>**更多布局配置及演示请查看：[Firefly 布局系统详解](https://firefly.cuteleaf.cn/posts/firefly-layout-system/)**
+>
+>Firefly 支持i18n多语言UI，但除了简体中文，其他语言均为AI翻译转换，如有错误，欢迎提交 [Pull Request](https://github.com/CuteLeaf/Firefly/pulls) 修正。
+
+## ✨ 功能特性
+
+### 核心功能
+
+- [x] **Astro + Tailwind CSS** - 基于现代技术栈的超快静态站点生成
+- [x] **流畅动画** - Swup 页面过渡动画，提供丝滑的浏览体验
+- [x] **响应式设计** - 完美适配桌面端、平板和移动设备
+- [x] **多语言支持** - i18n 国际化，UI支持简体中文、繁体中文、英文、日文、俄语
+- [x] **全文搜索** - 基于 Pagefind 的客户端搜索，支持文章内容索引
+
+### 个性化
+- [x] **动态侧边栏** - 支持配置单侧边栏、双侧边栏
+- [x] **文章布局** - 支持配置(单列)列表、网格(多列/瀑布流)布局
+- [x] **字体管理** - 支持自定义字体，丰富的字体选择器
+- [x] **页脚配置** - HTML 内容注入，完全自定义
+- [x] **亮暗色模式** - 支持亮色/暗色/跟随系统三种模式
+- [x] **导航栏自定义** - Logo、标题、链接全面自定义
+- [x] **壁纸模式切换** - 横幅壁纸、全屏壁纸、全屏透明壁纸、纯色背景
+- [x] **主题色自定义** - 360° 色相调节
+
+如果你有好用的功能和优化，请提交 [Pull Request](https://github.com/CuteLeaf/Firefly/pulls)
+
+## 🚀 快速开始
+
+### 环境要求
+
+- Node.js ≥ 22
+- pnpm ≥ 9
+
+### 本地开发部署
+
+1. **克隆仓库：**
+   ```bash
+   git clone https://github.com/Cuteleaf/Firefly.git
+   cd Firefly
+   ```
+   
+   **先 [Fork](https://github.com/CuteLeaf/Firefly/fork) 到自己仓库在克隆（推荐），记得先点 Star 在 Fork 哦！**
+
+   ```bash
+   git clone https://github.com/you-github-name/Firefly.git
+   cd Firefly
+   ```
+3. **安装依赖：**
+   ```bash
+   # 如果没有安装 pnpm，先安装
+   npm install -g pnpm
+   
+   # 安装项目依赖
+   pnpm install
+   ```
+
+4. **配置博客：**
+   - 编辑 `src/config/` 目录下的配置文件自定义博客设置
+
+5. **启动开发服务器：**
+   ```bash
+   pnpm dev
+   ```
+   博客将在 `http://localhost:4321` 可用
+   
+### 社区教程
+Cloudflare Workers部署：[【不用服务器，无需备案，零成本搭建一个自己的个人博客】](https://www.bilibili.com/video/BV1hX9XBKEhm)
+
+### 平台托管部署
+- **参考[官方指南](https://docs.astro.build/zh-cn/guides/deploy/)将博客部署至 Vercel, Netlify, Cloudflare Pages, EdgeOne Pages 等。**
+- **Vercel**、**Netlify** 等主流平台自动部署，会根据环境自动选择适配器。
+
+   框架预设： `Astro`
+
+   根目录： `./`
+
+   输出目录： `dist`
+
+   构建命令： `pnpm run build`
+
+   安装命令： `pnpm install`
+
+   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/CuteLeaf/Firefly&project-name=Firefly&repository-name=Firefly)
+   [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/CuteLeaf/Firefly)
+
+## 📖 配置说明
+
+> 📚 **详细配置文档**: 查看 [Firefly使用文档](https://docs-firefly.cuteleaf.cn/) 获取完整的配置指南
+
+### 设置网站语言
+
+要设置博客的默认语言，请编辑 `src/config/siteConfig.ts` 文件：
+
+```typescript
+// 定义站点语言
+const SITE_LANG = "zh_CN";
+```
+
+**支持的语言代码：**
+- `zh_CN` - 简体中文
+- `zh_TW` - 繁体中文
+- `en` - 英文
+- `ja` - 日文
+- `ru` - 俄文
+
+### 配置文件结构
+
+```
+src/
+├── config/
+│   ├── index.ts                  # 配置索引文件
+│   ├── siteConfig.ts             # 站点基础配置
+│   ├── analyticsConfig.ts        # 统计分析配置
+│   ├── announcementConfig.ts     # 公告配置
+│   ├── backgroundWallpaper.ts    # 背景壁纸配置
+│   ├── commentConfig.ts          # 评论系统配置
+│   ├── coverImageConfig.ts       # 封面图配置
+│   ├── effectsConfig.ts          # 动画特效配置（樱花等）
+│   ├── expressiveCodeConfig.ts   # 代码高亮配置
+│   ├── fontConfig.ts             # 字体配置
+│   ├── footerConfig.ts           # 页脚配置
+│   ├── friendsConfig.ts          # 友链配置
+│   ├── galleryConfig.ts          # 相册配置
+│   ├── licenseConfig.ts          # 许可证配置
+│   ├── musicConfig.ts            # 音乐播放器配置
+│   ├── navBarConfig.ts           # 导航栏配置
+│   ├── pioConfig.ts              # 看板娘配置
+│   ├── plantumlConfig.ts         # PlantUML 图表配置
+│   ├── profileConfig.ts          # 用户资料配置
+│   ├── sidebarConfig.ts          # 侧边栏布局配置
+│   └── sponsorConfig.ts          # 赞助配置
+```
+
+## ⚙️ 文章 Frontmatter
+
+```yaml
+---
+title: My First Blog Post
+published: 2023-09-09
+description: This is the first post of my new Astro blog.
+image: ./cover.jpg  # 或使用 "api" 来启用随机封面图
+tags: [Foo, Bar]
+category: Front-end
+draft: false
+lang: zh-CN      # 仅当文章语言与 `siteConfig.ts` 中的网站语言不同时需要设置
+pinned: false    # 置顶
+comment: true    # 是否允许评论
 ---
 ```
 
-Or, you can use the following command in your terminal to create a new post:
+## 🧩 Markdown 扩展语法
 
-```bash
-pnpm theme:create
-```
+除了 Astro 默认支持的 [GitHub Flavored Markdown](https://github.github.com/gfm/) 之外，还包含了一些额外的 Markdown 功能：
 
-## Updating the theme
+- 提醒块（Admonitions） - 支持 GitHub, Obsidian, VitePress 三种风格主题配置 ([预览和用法](https://firefly.cuteleaf.cn/posts/markdown-extended/))
+- GitHub 仓库卡片 ([预览和用法](https://firefly.cuteleaf.cn/posts/markdown-extended/))
+- 基于 Expressive Code 的增强代码块 ([预览](http://firefly.cuteleaf.cn/posts/code-examples/) / [文档](https://expressive-code.com/))
 
-You can simply [`Sync Fork`](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) on your own forked project (do not click Discard Changes, otherwise you will lose your own changes).
+## 🧞 指令
 
-## Customization
+下列指令均需要在项目根目录执行：
 
-Typography is highly customizable. The default configuration file is [src/.config/default.ts](src/.config/default.ts), you can override the default configuration in [src/.config/user.ts](src/.config/user.ts) as needed.
+| Command                    | Action                                              |
+|:---------------------------|:----------------------------------------------------|
+| `pnpm install`             | 安装依赖                               |
+| `pnpm dev`                 | 在 `localhost:4321` 启动本地开发服务器        |
+| `pnpm build`               | 构建网站至 `./dist/`            |
+| `pnpm preview`             | 本地预览已构建的网站        |
+| `pnpm check`               | 检查代码中的错误                 |
+| `pnpm format`              | 使用Biome格式化您的代码                        |
+| `pnpm new-post <filename>` | 创建新文章                                   |
+| `pnpm astro ...`           | 执行 `astro add`, `astro check` 等指令    |
+| `pnpm astro --help`        | 显示 Astro CLI 帮助                        |
 
-### Social links
+## 🙏 致谢
 
-Typography has built-in support for adding links to your social media accounts to the site via the social option in the config file:
+非常感谢 [saicaca](https://github.com/saicaca) 开发的 [fuwari](https://github.com/saicaca/fuwari) 模板，Firefly 就是基于这个模板二次开发
 
-```ts
-socials: [
-  {
-    name: 'github',
-    href: 'https://github.com/moeyua/astro-theme-typography'
-  }
-]
-```
+流萤部分相关图片素材版权归游戏 [《崩坏：星穹铁道》](https://sr.mihoyo.com/) 开发商 [米哈游](https://www.mihoyo.com/) 所有
 
-The `name` is the icon name in [Material Design Icons](https://pictogrammers.com/library/mdi/),
-which will be automatically generated as the icon.
+### 技术栈
 
-> Note that you need to restart the development server to see the changes.
+- [Astro](https://astro.build) 
+- [Tailwind CSS](https://tailwindcss.com) 
+- [Iconify](https://iconify.design)
 
-### Navigation links
+### 灵感项目
 
-By default, the navigation are `Posts`, `Archive`, `Categories` and `About`. You can add more in the config file:
+- [fuwari](https://github.com/saicaca/fuwari)
+- [hexo-theme-shoka](https://github.com/amehime/hexo-theme-shoka)
+- [astro-koharu](https://github.com/cosZone/astro-koharu)
+- [Mizuki](https://github.com/matsuzaka-yuki/Mizuki)
 
-```ts
-{
-  navs: [
-    {
-      name: 'Categories',
-      href: '/categories'
-    }
-  ]
-}
-```
+### 其他参考
+- 博主`霞葉`的 [Bangumi 收藏](https://kasuha.com/posts/fuwari-enhance-ep2/) 页面组件
+- 哔哩哔哩up主 `公公的日常` 的Q版 [流萤看板娘Spine切片数据](https://www.bilibili.com/video/BV1fuVzzdE5y) 
 
-And then add the corresponding page in `src/pages`, see more in [Astro Pages](https://docs.astro.build/en/core-concepts/astro-pages/)
+## 📝 许可协议
 
-### Dark mode
+本项目遵循 [MIT license](https://mit-license.org/) 开源协议，详细查看 [LICENSE](./LICENSE) 文件
 
-Typography supports dark mode. You can change it in the config file:
+最初 Fork 自 [saicaca/fuwari](https://github.com/saicaca/fuwari)，感谢原作者的贡献
 
-```ts
-themeStyle: 'dark' // 'light' | 'dark' | 'system'
-```
+**版权声明：**
+- Copyright (c) 2024 [saicaca](https://github.com/saicaca) - [fuwari](https://github.com/saicaca/fuwari)
+- Copyright (c) 2025 [CuteLeaf](https://github.com/CuteLeaf) - [Firefly](https://github.com/CuteLeaf/Firefly) 
 
-### Internationalization (i18n)
+根据 MIT 开源协议，你可以自由使用、修改、分发代码，但需保留上述版权声明。
 
-Typography provides built-in support for multilingual sites. By default, the language is `en-us`, you can change it in the config file:
+## 🍀 贡献者
 
-```ts
-locale: 'zh-cn'
-```
+感谢以下贡献者对本项目做出的贡献，如有问题或建议，请提交 [Issue](https://github.com/CuteLeaf/Firefly/issues) 或 [Pull Request](https://github.com/CuteLeaf/Firefly/pulls)。
 
-For now, Typography supports below languages:
+><a href="https://github.com/CuteLeaf/Firefly/graphs/contributors">
+>  <img src="https://contrib.rocks/image?repo=CuteLeaf/Firefly" />
+></a>
 
-- `en-us`
-- `zh-cn`
-- `zh-tw`
-- `ja-jp`
-- `it-it`
+感谢以下贡献者对原项目 [fuwari](https://github.com/saicaca/fuwari) 做出的贡献，为本项目奠定了基础。
 
-You can see all supported languages in [src/i18n.ts](src/i18n.ts), and add more if you need.
+><a href="https://github.com/saicaca/fuwari/graphs/contributors">
+>  <img src="https://contrib.rocks/image?repo=saicaca/fuwari" />
+></a>
 
-### Comment
+## ⭐ Star History
 
-Typography supports multiple comment services, currently supports [Disqus](https://disqus.com/), [Giscus](https://giscus.app/) and [Twikoo](https://twikoo.js.org/).
+[![Star History Chart](https://api.star-history.com/svg?repos=CuteLeaf/Firefly&type=Date)](https://star-history.com/#CuteLeaf/Firefly&Date)
 
-Enable the corresponding comment service by adding the configuration to the config file, when you fill in multiple comment services, only the first service will be displayed.
 
-#### Disqus
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
 
-You can enable Disqus by adding the following configuration to the config file:
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
 
-```ts
-comments: {
-  disqus: {
-    shortname: 'your-disqus-shortname'
-  }
-}
-```
-
-#### Giscus
-
-Based on the [Giscus web component](https://github.com/giscus/giscus-component?tab=readme-ov-file#using-the-web-component) implementation.
-
-The prop names are the same as the data- attributes shown on the [giscus website](<(https://giscus.app/)>), but written in camelCase with the data- prefix and dashes removed.
-
-You can enable Giscus by adding the following configuration to the config file:
-
-```ts
-{
-  comments: {
-    giscus: {
-      repo: 'moeyua/astro-theme-typography'
-      repoId: 'R_kgDOKy9HOQ'
-      category: 'General'
-      categoryId: 'DIC_kwDOKy9HOc4CegmW'
-      mapping: 'title'
-      strict: '0'
-      reactionsEnabled: '1'
-      emitMetadata: '1'
-      inputPosition: 'top'
-      theme: 'light'
-      lang: 'zh-CN'
-      loading: 'lazy'
-    }
-  }
-}
-```
-
-#### Twikoo
-
-You can enable Twikoo by adding the following configuration to the config file:
-
-```ts
-{
-  comments: {
-    twikoo: {
-      envId: 'your-env-id'
-    }
-  }
-}
-```
-
-## Pagespeed Score
-
-[![Pagespeed Score](https://github.com/moeyua/astro-theme-typography/assets/45156493/2272f576-d6ff-49ef-a294-5c2acf365907)](https://pagespeed.web.dev/analysis/https-astro-theme-typography-vercel-app/j34nq9tx0s?form_factor=desktop)
-
-## TODO
-
-- [ ] WebSub
-- [x] comment
-- [ ] search
-- [ ] analytics
+<!-- ALL-CONTRIBUTORS-LIST:END -->
