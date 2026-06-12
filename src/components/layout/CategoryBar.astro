@@ -13,26 +13,26 @@ const { currentPostCategory } = Astro.props as Props;
 
 const categories = await getCategoryList();
 const totalPosts = (await getSortedPostsList()).length;
-const homeUrl = url("/");
+const articlesUrl = url("/articles/");
 const archiveUrl = url("/archive/");
 ---
 
 <div
   class="card-base category-bar p-3 onload-animation"
   id="category-bar"
-  data-home-path={homeUrl}
+  data-articles-path={articlesUrl}
   data-archive-path={archiveUrl}
   data-current-post-category={currentPostCategory || ""}
 >
   <div class="category-bar-inner flex gap-2">
     <a
-      href={homeUrl}
+      href={articlesUrl}
       class="category-pill text-sm px-3 py-1.5 rounded-xl shrink-0
              transition-colors duration-150 ease-out flex items-center justify-center"
       data-category-name=""
-      aria-label={i18n(I18nKey.home)}
+      aria-label={i18n(I18nKey.articles)}
     >
-      <Icon name="material-symbols:home" is:inline class="text-lg" />
+      <Icon name="material-symbols:article" is:inline class="text-lg" />
     </a>
     <a
       href={archiveUrl}
@@ -191,14 +191,14 @@ const archiveUrl = url("/archive/");
 
   function getCategoryBarState(bar: HTMLElement, currentUrl: URL) {
     const pathname = currentUrl.pathname.replace(/\/$/, "");
-    const homePath = (bar.getAttribute("data-home-path") || "/").replace(/\/$/, "");
+    const articlesPath = (bar.getAttribute("data-articles-path") || "/articles").replace(/\/$/, "");
     const archivePath = (bar.getAttribute("data-archive-path") || "/archive").replace(/\/$/, "");
-    const isHome = pathname === homePath || pathname === "" || pathname === "/";
+    const isArticles = pathname === articlesPath || pathname.startsWith(`${articlesPath}/`);
     const isArchive = pathname === archivePath;
     const isCategories = pathname === "/categories";
 
     return {
-      isHome,
+      isArticles,
       isArchive,
       isCategories,
       activeCategory: currentUrl.searchParams.get("category") || "",
@@ -208,7 +208,7 @@ const archiveUrl = url("/archive/");
   }
 
   function setActiveCategory(bar: HTMLElement, currentUrl: URL) {
-    const { isHome, isArchive, isCategories, activeCategory, hasTag, hasUncategorized } =
+    const { isArticles, isArchive, isCategories, activeCategory, hasTag, hasUncategorized } =
       getCategoryBarState(bar, currentUrl);
     const postCategory = (bar.getAttribute("data-current-post-category") || "").trim();
 
@@ -218,7 +218,7 @@ const archiveUrl = url("/archive/");
       pill.removeAttribute("data-soft-active");
     });
 
-    if (isHome) {
+    if (isArticles) {
       bar.querySelector<HTMLAnchorElement>('.category-pill[data-category-name=""]')
         ?.setAttribute("data-active", "");
       return;
@@ -266,10 +266,10 @@ const archiveUrl = url("/archive/");
   }
 
   function shouldDeferCategoryScroll(bar: HTMLElement, currentUrl: URL) {
-    const { isHome } = getCategoryBarState(bar, currentUrl);
+    const { isArticles } = getCategoryBarState(bar, currentUrl);
     const isMobile = window.innerWidth < 1024;
     const isBannerMode = document.body.classList.contains("enable-banner");
-    return isMobile && isBannerMode && !isHome;
+    return isMobile && isBannerMode && !isArticles;
   }
 
   function updateCategoryBar(

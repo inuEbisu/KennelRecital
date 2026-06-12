@@ -112,7 +112,15 @@ const shouldRenderGradient =
 // 检查是否为首页
 const isHomePageCheck = isHomePage(Astro.url.pathname);
 
-const shouldRenderCategoryBar = !!siteConfig.categoryBar;
+const normalizedPathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isCategoryBarPage =
+	normalizedPathname === "/articles" ||
+	normalizedPathname.startsWith("/articles/") ||
+	normalizedPathname === "/archive" ||
+	normalizedPathname.startsWith("/archive/") ||
+	normalizedPathname === "/categories" ||
+	normalizedPathname.startsWith("/categories/");
+const shouldRenderCategoryBar = !!siteConfig.categoryBar && isCategoryBarPage;
 
 // 检查是否在文章详情页
 const isPostPage = !!postSlug;
@@ -883,7 +891,7 @@ const bannerCarouselInterval = Math.max(
                     
             {/* 主内容区包装器 - 包含静态栏位和swup容器，作为单个grid item */}
             <div class={staticBarClass}>
-                {/* 分类导航栏 - 全站渲染并显示 */}
+                {/* 分类导航栏 - 仅在文章列表、归档、分类页显示 */}
                 {shouldRenderCategoryBar && <div id="category-bar-wrapper"><CategoryBar currentPostCategory={postCategory} /></div>}
                 {/* 主内容区 - 始终渲染，确保 Swup 容器存在 */}
                 <main
@@ -964,4 +972,3 @@ const bannerCarouselInterval = Math.max(
   }
 
 </style>
-
