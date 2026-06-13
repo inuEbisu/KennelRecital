@@ -887,11 +887,18 @@ const bannerCarouselInterval = Math.max(
                     {effectiveIsBothSidebars && effectiveHasLeftComponents && (
 						<SideBar side="left" class={sidebarClass} headings={headings}></SideBar>
                     )}
-                </div>
-            )}
-                    
-            {/* 主内容区包装器 - 包含静态栏位和swup容器，作为单个grid item */}
-            <div class={staticBarClass}>
+	                </div>
+	            )}
+	                    
+	            {/* 移动端组件 - 768px以下显示在主内容上方 */}
+	            {sidebarLayoutConfig.mobileBottomComponents && sidebarLayoutConfig.mobileBottomComponents.length > 0 && (
+	                <div id="mobile-bottom-sidebar" class="col-span-1 block md:hidden mb-4">
+						<SideBar side="bottom" headings={headings}></SideBar>
+	                </div>
+	            )}
+
+	            {/* 主内容区包装器 - 包含静态栏位和swup容器，作为单个grid item */}
+	            <div class={staticBarClass}>
                 {/* 分类导航栏 - 静态渲染，客户端按当前 URL 显隐以适配 Swup 页面切换 */}
                 {siteConfig.categoryBar && (
                     <div
@@ -942,16 +949,9 @@ const bannerCarouselInterval = Math.max(
                 </div>
             )}
 
-            {/* 移动端底部组件 - 768px及以下显示 */}
-            {sidebarLayoutConfig.mobileBottomComponents && sidebarLayoutConfig.mobileBottomComponents.length > 0 && (
-                <div id="mobile-bottom-sidebar" class="col-span-1 block md:hidden mt-4">
-					<SideBar side="bottom" headings={headings}></SideBar>
-                </div>
-            )}
-
-            <div class={footerClassName}>
-                <Footer></Footer>
-            </div>
+	            <div class={footerClassName}>
+	                <Footer></Footer>
+	            </div>
         </div>
 
         <SpineModel></SpineModel>
