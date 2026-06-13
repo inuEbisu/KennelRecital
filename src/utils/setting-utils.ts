@@ -33,7 +33,17 @@ export function getDefaultHue(): number {
 		return Number.parseInt(fallback, 10);
 	}
 	const configCarrier = document.getElementById("config-carrier");
-	return Number.parseInt(configCarrier?.dataset.hue || fallback, 10);
+	const mode = document.documentElement.classList.contains("dark")
+		? "dark"
+		: "light";
+	const themedHue =
+		mode === "dark"
+			? configCarrier?.dataset.darkHue
+			: configCarrier?.dataset.lightHue;
+	return Number.parseInt(
+		themedHue || configCarrier?.dataset.hue || fallback,
+		10,
+	);
 }
 
 export function getDefaultChroma(): number {
@@ -42,7 +52,16 @@ export function getDefaultChroma(): number {
 		return Number.parseFloat(fallback);
 	}
 	const configCarrier = document.getElementById("config-carrier");
-	return Number.parseFloat(configCarrier?.dataset.chroma || fallback);
+	const mode = document.documentElement.classList.contains("dark")
+		? "dark"
+		: "light";
+	const themedChroma =
+		mode === "dark"
+			? configCarrier?.dataset.darkChroma
+			: configCarrier?.dataset.lightChroma;
+	return Number.parseFloat(
+		themedChroma || configCarrier?.dataset.chroma || fallback,
+	);
 }
 
 export function getDefaultTheme(): LIGHT_DARK_MODE {
@@ -74,12 +93,18 @@ export function getHue(): number {
 	if (typeof window === "undefined" || !window.localStorage) {
 		return getDefaultHue();
 	}
+	if (siteConfig.themeColor.fixed) {
+		return getDefaultHue();
+	}
 	const stored = localStorage.getItem("hue");
 	return stored ? Number.parseInt(stored, 10) : getDefaultHue();
 }
 
 export function getChroma(): number {
 	if (typeof window === "undefined" || !window.localStorage) {
+		return getDefaultChroma();
+	}
+	if (siteConfig.themeColor.fixed) {
 		return getDefaultChroma();
 	}
 	const stored = localStorage.getItem("chroma");
@@ -118,6 +143,28 @@ export function setChroma(chroma: number): void {
 		return;
 	}
 	r.style.setProperty("--chroma", String(normalizedChroma));
+}
+
+function applyDefaultThemeColor(): void {
+	if (
+		typeof window === "undefined" ||
+		!window.localStorage ||
+		typeof document === "undefined"
+	) {
+		return;
+	}
+
+	const r = document.querySelector(":root") as HTMLElement;
+	if (!r) {
+		return;
+	}
+
+	if (siteConfig.themeColor.fixed || !localStorage.getItem("hue")) {
+		r.style.setProperty("--hue", String(getDefaultHue()));
+	}
+	if (siteConfig.themeColor.fixed || !localStorage.getItem("chroma")) {
+		r.style.setProperty("--chroma", String(getDefaultChroma()));
+	}
 }
 
 export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
@@ -179,6 +226,8 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
 	if (needsCodeThemeUpdate) {
 		document.documentElement.setAttribute("data-theme", expectedTheme);
 	}
+
+	applyDefaultThemeColor();
 }
 
 // 系统主题监听器引用
@@ -243,6 +292,8 @@ export function setupSystemThemeListener() {
 			? expressiveCodeConfig.darkTheme
 			: expressiveCodeConfig.lightTheme;
 		document.documentElement.setAttribute("data-theme", expressiveTheme);
+
+		applyDefaultThemeColor();
 
 		// 触发自定义事件通知其他组件（仅在真正切换时触发）
 		window.dispatchEvent(new CustomEvent("theme-change"));

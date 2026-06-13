@@ -26,6 +26,16 @@ export const siteConfig: SiteConfig = {
 		hue: 40,
 		// 主题色的默认色度，范围建议 0 到 0.2，值越低越灰
 		chroma: 0.05,
+		// 亮色模式主题色
+		light: {
+			hue: 40,
+			chroma: 0.05,
+		},
+		// 暗色模式主题色
+		dark: {
+			hue: 265,
+			chroma: 0.15,
+		},
 		// 是否对访问者隐藏主题色选择器
 		fixed: true,
 		// 默认模式："light" 亮色，"dark" 暗色，"system" 跟随系统

@@ -7,6 +7,10 @@ import { backgroundWallpaper, siteConfig } from "@/config";
   id="config-carrier"
   data-hue={siteConfig.themeColor.hue}
   data-chroma={siteConfig.themeColor.chroma ?? 0.14}
+  data-light-hue={siteConfig.themeColor.light?.hue ?? siteConfig.themeColor.hue}
+  data-light-chroma={siteConfig.themeColor.light?.chroma ?? siteConfig.themeColor.chroma ?? 0.14}
+  data-dark-hue={siteConfig.themeColor.dark?.hue ?? siteConfig.themeColor.hue}
+  data-dark-chroma={siteConfig.themeColor.dark?.chroma ?? siteConfig.themeColor.chroma ?? 0.14}
   data-wallpaper-mode={backgroundWallpaper.mode}
 >
 </div>

@@ -37,6 +37,14 @@ export type SiteConfig = {
 	themeColor: {
 		hue: number;
 		chroma?: number;
+		light?: {
+			hue: number;
+			chroma?: number;
+		};
+		dark?: {
+			hue: number;
+			chroma?: number;
+		};
 		fixed: boolean;
 		defaultMode?: LIGHT_DARK_MODE; // 默认模式：浅色、深色或跟随系统
 	};

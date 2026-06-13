@@ -61,6 +61,10 @@ const isHomePageCheck = isHomePage(Astro.url.pathname);
 // why doing this in Layout instead of GlobalStyles: https://github.com/withastro/astro/issues/6728#issuecomment-1502203757
 const configHue = siteConfig.themeColor.hue;
 const configChroma = siteConfig.themeColor.chroma ?? 0.14;
+const configLightHue = siteConfig.themeColor.light?.hue ?? configHue;
+const configLightChroma = siteConfig.themeColor.light?.chroma ?? configChroma;
+const configDarkHue = siteConfig.themeColor.dark?.hue ?? configHue;
+const configDarkChroma = siteConfig.themeColor.dark?.chroma ?? configChroma;
 
 // 获取导航栏透明模式配置
 const navbarTransparentMode =
@@ -251,6 +255,11 @@ const siteLang = lang.replace("_", "-");
         PAGE_WIDTH,
         configHue,
         configChroma,
+        configLightHue,
+        configLightChroma,
+        configDarkHue,
+        configDarkChroma,
+        themeColorFixed: siteConfig.themeColor.fixed,
         defaultMode: siteConfig.themeColor.defaultMode ?? "light",
         defaultWallpaperMode: backgroundWallpaper.mode,
         isWallpaperSwitchable:
@@ -300,10 +309,17 @@ const siteLang = lang.replace("_", "-");
         isDark ? darkTheme : lightTheme
       );
 
+      const defaultHue = isDark ? configDarkHue : configLightHue;
+      const defaultChroma = isDark ? configDarkChroma : configLightChroma;
+
       // Load the hue from local storage
-      const hue = localStorage.getItem("hue") || configHue;
+      const hue = themeColorFixed
+        ? defaultHue || configHue
+        : localStorage.getItem("hue") || defaultHue || configHue;
       document.documentElement.style.setProperty("--hue", hue);
-      const chroma = localStorage.getItem("chroma") || configChroma;
+      const chroma = themeColorFixed
+        ? defaultChroma || configChroma
+        : localStorage.getItem("chroma") || defaultChroma || configChroma;
       document.documentElement.style.setProperty("--chroma", chroma);
 
       // 设置卡片透明度（全屏透明模式下使用），优先使用用户自定义值
@@ -550,6 +566,10 @@ const siteLang = lang.replace("_", "-");
       define:vars={{
         configHue,
         configChroma,
+        configLightHue,
+        configLightChroma,
+        configDarkHue,
+        configDarkChroma,
         "page-width": `${siteConfig.pageWidth ?? PAGE_WIDTH}rem`,
       }}
     ></style>
