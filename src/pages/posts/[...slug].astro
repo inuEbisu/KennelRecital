@@ -129,7 +129,9 @@ const jsonLd = {
 };
 
 const showRecommendedPosts = siteConfig.post.showRecommendedPosts ?? true;
-const relatedPosts = showRecommendedPosts ? await getRelatedPosts(entry, 5) : [];
+const relatedPosts = showRecommendedPosts
+	? await getRelatedPosts(entry, 5)
+	: [];
 ---
 
 <MainGridLayout
