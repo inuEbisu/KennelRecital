@@ -128,7 +128,8 @@ const jsonLd = {
 	// TODO include cover image here
 };
 
-const relatedPosts = await getRelatedPosts(entry, 5);
+const showRecommendedPosts = siteConfig.post.showRecommendedPosts ?? true;
+const relatedPosts = showRecommendedPosts ? await getRelatedPosts(entry, 5) : [];
 ---
 
 <MainGridLayout
@@ -540,7 +541,9 @@ const relatedPosts = await getRelatedPosts(entry, 5);
     </a>
   </div>
 
-  <RecommendedPost relatedPosts={relatedPosts} currentPostId={entry.id} />
+  {showRecommendedPosts && (
+    <RecommendedPost relatedPosts={relatedPosts} currentPostId={entry.id} />
+  )}
 
   <!-- 评论 -->
   {entry.data.comment && !entry.data.password && <Comment post={entry} />}
