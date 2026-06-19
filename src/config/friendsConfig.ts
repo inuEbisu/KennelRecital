@@ -97,6 +97,14 @@ export const friendsConfig: FriendLink[] = [
 		tags: ["Blog"],
 		enabled: true,
 	},
+	{
+		title: "Umbrella Coffee",
+		imgurl: "https://avatars.githubusercontent.com/u/142905707?s=240&v=4",
+		desc: "欢迎来到雨伞咖啡店！",
+		siteurl: "https://rubatotree.github.io/blog/",
+		tags: ["Blog"],
+		enabled: true,
+	},
 ];
 
 export const getEnabledFriends = (): FriendLink[] => {
