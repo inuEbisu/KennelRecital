@@ -69,7 +69,7 @@ export const friendsConfig: FriendLink[] = [
 		title: "timetraveler314",
 		imgurl: "https://avatars.githubusercontent.com/u/36299842?s=240&v=4",
 		desc: "从类型学高塔一跃而下",
-		siteurl: "https://chernoff.bond/",
+		siteurl: "https://github.com/timetraveler314",
 		tags: ["Blog"],
 		enabled: true,
 	},
