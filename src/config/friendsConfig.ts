@@ -43,9 +43,9 @@ export const friendsConfig: FriendLink[] = [
 	},
 	{
 		title: "iceBear67",
-		imgurl: "https://blog.0w0.ing/avatar.png",
+		imgurl: "https://sfclub.cc/~icybear/avatar.png",
 		desc: "iceBear 的博客",
-		siteurl: "https://blog.0w0.ing/",
+		siteurl: "https://sfclub.cc/~icybear",
 		tags: ["Blog"],
 		enabled: true,
 	},
