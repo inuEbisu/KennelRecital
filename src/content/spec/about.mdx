@@ -135,22 +135,30 @@ My broader interests include computer architecture, supercomputing, and informat
   </article>
   <article class="py-4">
     <div class="flex items-baseline justify-between gap-3">
-      <h3 class="inline-flex shrink-0 items-baseline gap-1.5 whitespace-nowrap text-lg font-semibold">
+      <h3 class="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap text-lg font-semibold">
         <span>Replicon</span>
-        <span
+        <a
           aria-label="GitHub stars for Replicon"
-          class="inline-flex items-center gap-0.5 text-sm font-medium text-neutral-500 dark:text-neutral-400"
+          class="no-styling inline-flex shrink-0 items-center leading-none"
+          href="https://github.com/inuEbisu/Replicon/stargazers"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <span>(</span><svg aria-hidden="true" class="h-4 w-4 fill-current" viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z" /></svg><span data-github-stars-repo="inuEbisu/Replicon">90+</span><span>)</span>
-        </span>
+          <img
+            alt="GitHub Repo stars"
+            class="h-5 max-w-none rounded-none!"
+            src="https://img.shields.io/github/stars/inuEbisu/Replicon?style=social"
+          />
+        </a>
       </h3>
-      <span class="shrink-0 text-right text-sm text-neutral-500 dark:text-neutral-400">PHP / HTML / CSS / JavaScript</span>
+      <span class="shrink-0 text-right text-sm text-neutral-500 dark:text-neutral-400">PHP</span>
     </div>
     <div class="mt-2 text-sm leading-6 text-neutral-600 dark:text-neutral-300">
       A minimal, modern, and reading-friendly Typecho blog theme.
     </div>
     <div class="mt-3 flex flex-wrap gap-3 text-sm">
       <a class="no-styling text-(--primary) hover:underline" href="https://github.com/inuEbisu/Replicon">Repository</a>
+      <a class="no-styling text-(--primary) hover:underline" href="https://archive.inuebisu.cn/">Demo Site</a>
     </div>
   </article>
   <div class="pt-4 text-sm">
@@ -270,35 +278,6 @@ My broader interests include computer architecture, supercomputing, and informat
 
 <script is:inline>{`
   (() => {
-    const formatStars = (count) =>
-      Intl.NumberFormat("en-us", {
-        notation: "compact",
-        maximumFractionDigits: 1,
-      }).format(count).replaceAll("\\u202f", "");
-
-    const updateGitHubStars = () => {
-      document.querySelectorAll("[data-github-stars-repo]").forEach((el) => {
-        if (el.dataset.githubStarsLoaded === "true") return;
-
-        const repo = el.dataset.githubStarsRepo;
-        if (!repo) return;
-
-        el.dataset.githubStarsLoaded = "true";
-        fetch("https://api.github.com/repos/" + repo, { referrerPolicy: "no-referrer" })
-          .then((response) => {
-            if (!response.ok) throw new Error("GitHub API request failed");
-            return response.json();
-          })
-          .then((data) => {
-            if (typeof data.stargazers_count !== "number") return;
-            el.textContent = formatStars(data.stargazers_count);
-          })
-          .catch(() => {
-            el.dataset.githubStarsLoaded = "false";
-          });
-      });
-    };
-
     const initAboutMoreAnimations = () => {
       document.querySelectorAll(".about-more").forEach((details) => {
         if (details.dataset.aboutMoreBound === "true") return;
@@ -364,11 +343,8 @@ My broader interests include computer architecture, supercomputing, and informat
       });
     };
 
-    updateGitHubStars();
     initAboutMoreAnimations();
-    document.addEventListener("astro:page-load", updateGitHubStars);
     document.addEventListener("astro:page-load", initAboutMoreAnimations);
-    document.addEventListener("swup:contentReplaced", updateGitHubStars);
     document.addEventListener("swup:contentReplaced", initAboutMoreAnimations);
   })();
 `}</script>
