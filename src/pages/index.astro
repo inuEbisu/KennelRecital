@@ -1,12 +1,12 @@
 ---
+import { getEntry, render } from "astro:content";
 import { execSync } from "node:child_process";
 import { statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { getEntry, render } from "astro:content";
-import { Icon } from "astro-icon/components";
 import Markdown from "@components/common/Markdown.astro";
-import MainGridLayout from "@/layouts/MainGridLayout.astro";
 import { formatDateToYYYYMMDD } from "@utils/date-utils";
+import { Icon } from "astro-icon/components";
+import MainGridLayout from "@/layouts/MainGridLayout.astro";
 
 const aboutPost = await getEntry("spec", "about");
 
@@ -17,7 +17,9 @@ if (!aboutPost) {
 const { Content } = await render(aboutPost);
 
 const projectRoot = fileURLToPath(new URL("../../", import.meta.url));
-const aboutFilePath = fileURLToPath(new URL("../content/spec/about.mdx", import.meta.url));
+const aboutFilePath = fileURLToPath(
+	new URL("../content/spec/about.mdx", import.meta.url),
+);
 
 function getAboutLastModifiedDate(): string {
 	try {
