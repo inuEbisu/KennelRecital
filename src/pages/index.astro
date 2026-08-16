@@ -1,7 +1,12 @@
 ---
+import { execSync } from "node:child_process";
+import { statSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { getEntry, render } from "astro:content";
+import { Icon } from "astro-icon/components";
 import Markdown from "@components/common/Markdown.astro";
 import MainGridLayout from "@/layouts/MainGridLayout.astro";
+import { formatDateToYYYYMMDD } from "@utils/date-utils";
 
 const aboutPost = await getEntry("spec", "about");
 
@@ -10,6 +15,23 @@ if (!aboutPost) {
 }
 
 const { Content } = await render(aboutPost);
+
+const projectRoot = fileURLToPath(new URL("../../", import.meta.url));
+const aboutFilePath = fileURLToPath(new URL("../content/spec/about.mdx", import.meta.url));
+
+function getAboutLastModifiedDate(): string {
+	try {
+		const out = execSync(`git log -1 --format=%cI -- "${aboutFilePath}"`, {
+			encoding: "utf-8",
+			cwd: projectRoot,
+			stdio: ["ignore", "pipe", "ignore"],
+		}).trim();
+		if (out) return out.substring(0, 10);
+	} catch {}
+	return formatDateToYYYYMMDD(statSync(aboutFilePath).mtime);
+}
+
+const lastModified = getAboutLastModifiedDate();
 ---
 
 <MainGridLayout title="首页" pageTitle="Keyu Zhu" description="犬戎的部落格 / inuEbisu's personal blog.">
@@ -18,6 +40,10 @@ const { Content } = await render(aboutPost);
       <Markdown class="mt-2">
         <Content />
       </Markdown>
+      <div class="mt-6 flex items-center justify-end gap-1.5 text-xs text-neutral-400 dark:text-neutral-500">
+        <Icon name="material-symbols:update-rounded" class="text-[1.05em]" />
+        <span>Last updated on {lastModified}</span>
+      </div>
     </div>
   </div>
 </MainGridLayout>
