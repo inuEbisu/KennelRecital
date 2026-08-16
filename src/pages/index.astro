@@ -2,7 +2,7 @@
 import { getEntry, render } from "astro:content";
 import { execSync } from "node:child_process";
 import { statSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import Markdown from "@components/common/Markdown.astro";
 import { formatDateToYYYYMMDD } from "@utils/date-utils";
 import { Icon } from "astro-icon/components";
@@ -16,18 +16,24 @@ if (!aboutPost) {
 
 const { Content } = await render(aboutPost);
 
-const projectRoot = fileURLToPath(new URL("../../", import.meta.url));
-const aboutFilePath = fileURLToPath(
-	new URL("../content/spec/about.mdx", import.meta.url),
+const aboutFilePath = join(
+	process.cwd(),
+	"src",
+	"content",
+	"spec",
+	"about.mdx",
 );
 
 function getAboutLastModifiedDate(): string {
 	try {
-		const out = execSync(`git log -1 --format=%cI -- "${aboutFilePath}"`, {
-			encoding: "utf-8",
-			cwd: projectRoot,
-			stdio: ["ignore", "pipe", "ignore"],
-		}).trim();
+		const out = execSync(
+			"git log -1 --format=%cI -- src/content/spec/about.mdx",
+			{
+				encoding: "utf-8",
+				cwd: process.cwd(),
+				stdio: ["ignore", "pipe", "ignore"],
+			},
+		).trim();
 		if (out) return out.substring(0, 10);
 	} catch {}
 	return formatDateToYYYYMMDD(statSync(aboutFilePath).mtime);
